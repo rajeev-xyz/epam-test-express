@@ -1,0 +1,52 @@
+<!--
+   author: rajeev.jayaswal
+   website: www.rajeevjayaswal.xyz
+   -->
+<!DOCTYPE html>
+<html ng-app="app">
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css">
+      <link rel="stylesheet" href="./stylesheets/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.js"></script>
+      <script src="./javascripts/client.js"></script>
+   </head>
+   <body>
+       <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">My Articles</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/page1">Page 1</a></li>
+      <li><a href="/page2">Page 2</a></li> 
+    </ul>
+  </div>
+</nav>
+       <div ng-controller="homeCtrl" class="container">
+        
+          <div id="wrapper">
+             
+            <!-- Sidebar -->
+            <div id="sidebar">
+               <ul id="article-list" class="sidebar-nav">
+                  <li class="sidebar-brand">
+                     <input type="text" ng-model="search" class="form-control" placeholder="Search Articles">
+                  </li>
+                  <li ng-repeat="article in articles | filter:search">
+                     <a id={{article.id}} ng-click="fetchContent(article.id)" href="#">{{article.title}}</a>
+                  </li>
+               </ul>
+            </div>
+            <!-- /#sidebar -->
+            <!-- Article Content -->
+            <% include content.ejs %>
+         </div>
+        <div ng-view></div>   
+      </div>
+   </body>
+</html>
